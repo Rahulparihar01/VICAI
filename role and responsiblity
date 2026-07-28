@@ -1,0 +1,27 @@
+roles and responsibilities:
+
+## 1. Super Admin (Internal VicAI Platform Owner / Staff)
+Operates the internal admin portal to run the whole platform.
+- **Tenant portfolio view** — sees all organisations, their tier, lifecycle status, health score
+- **Health & monitoring** — tracks billing, channels, integrations, usage, AI quality, engagement per tenant
+- **Service control ("kill-switches")** — pause/suspend/resume tenant services with impact preview, reason logging, audit trail
+- **Billing & usage management** — reviews usage ledgers, applies adjustments/credits, resolves discrepancies, approves invoice snapshots to Xero
+- **Support & diagnostics** — replays failed webhooks, views vendor logs (Telnyx, Stripe), uses time-limited audited impersonation to troubleshoot in a customer's portal
+
+## 2. Admin (Customer Organisation Admin)
+Operates the branded customer portal to run their own business.
+- **Self-service onboarding** — registers, verifies email, picks a plan, enters payment via Stripe
+- **Business configuration** — locations, trading hours, services, escalation contacts, FAQs/documents
+- **Integration centre** — connects telephony, SMS, email, socials, business software via OAuth/keys
+- **AI agent setup** — defines identity, brand tone, tool constraints, handover rules
+- **Reply controls** — sets AI behaviour per channel (human only / AI drafts / conditional auto-send / AI-first with handover)
+- **Testing & go-live** — sandbox tests the agent, then requests production activation
+- **Ongoing management** — invites staff with RBAC, monitors dashboards, manages reputation/review replies
+
+## 3. Customer (End-User/Client)
+Interacts only through external channels — never logs into a portal.
+- **Omnichannel inbound** — contacts the business via phone, SMS, web chat, email, or social
+- **AI interaction** — gets answered/qualified/booked by the AI agent using its constrained knowledge base
+- **Seamless handover** — AI hands off to a human when it hits complex questions, restricted wording, or a direct request for a human; human sees full context/transcript in the unified inbox
+- **Proactive follow-up** — receives an automated SMS/email review request after job completion
+- **Review loop** — if they leave a Google review, it's ingested back in; AI analyzes sentiment and drafts a reply for approval, with priority escalation triggered for negative (1–3 star) reviews

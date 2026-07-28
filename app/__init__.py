@@ -1,0 +1,1 @@
+"""VicAI FastAPI application package."""
