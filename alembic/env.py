@@ -5,7 +5,11 @@ from sqlalchemy import engine_from_config, pool
 from alembic import context
 from app.core.config import get_settings
 from app.db.database import Base, normalize_database_url
-from app.models.domain import Tenant, User, Invitation  # noqa: F401
+from app.models.tenant import Tenant
+from app.models.user import User
+
+from app.models.audit_log import AuditLog
+from app.models.setting import PlatformSetting
 
 config = context.config
 if config.config_file_name is not None:

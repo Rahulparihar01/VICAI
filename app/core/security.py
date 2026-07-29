@@ -12,7 +12,7 @@ from pwdlib import PasswordHash
 
 from app.core.config import Settings, get_settings
 from app.core.errors import ApiError
-from app.schemas.domain import Role, PlatformType
+from app.schemas.core import Role, PlatformType
 
 password_hash = PasswordHash.recommended()
 DUMMY_PASSWORD_HASH = password_hash.hash("vicai-dummy-password-that-is-never-valid")
@@ -117,4 +117,14 @@ def require_customer_platform(principal: Annotated[Principal, Depends(get_curren
 def require_organization_admin(principal: Annotated[Principal, Depends(get_current_principal)]) -> Principal:
     if principal.platform != "customer" or principal.role not in ("owner", "administrator"):
         raise ApiError(403, "FORBIDDEN", "Organization admin access required.")
+    return principal
+
+def require_admin_operations(principal: Annotated[Principal, Depends(get_current_principal)]) -> Principal:
+    if principal.platform != "admin" or principal.role not in ("platform_owner", "operations"):
+        raise ApiError(403, "FORBIDDEN", "Operations or platform owner access required.")
+    return principal
+
+def require_admin_support(principal: Annotated[Principal, Depends(get_current_principal)]) -> Principal:
+    if principal.platform != "admin" or principal.role not in ("platform_owner", "operations", "support"):
+        raise ApiError(403, "FORBIDDEN", "Support, operations, or platform owner access required.")
     return principal

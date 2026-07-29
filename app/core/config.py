@@ -18,6 +18,15 @@ class Settings(BaseSettings):
     jwt_audience: str = "vicai-app"
     access_token_expire_minutes: int = Field(default=30, ge=5, le=1440)
 
+    stripe_secret_key: SecretStr | None = None
+    stripe_webhook_secret: SecretStr | None = None
+
+    smtp_host: str | None = None
+    smtp_port: int = 587
+    smtp_user: str | None = None
+    smtp_password: SecretStr | None = None
+    smtp_from_email: str | None = None
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

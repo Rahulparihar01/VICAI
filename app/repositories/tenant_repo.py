@@ -4,7 +4,7 @@ import uuid
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.models.domain import Tenant
+from app.models.tenant import Tenant
 
 class TenantRepository:
     def __init__(self, session: Session):
